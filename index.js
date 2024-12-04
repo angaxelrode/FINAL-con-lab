@@ -10,37 +10,57 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-// Database setup with default data
-const questionsDb = new Low(new JSONFile('db.json'), { questions: [] });
-const responsesDb = new Low(new JSONFile('responses.json'), { responses: [] });
+// Database setup with absolute paths for Glitch
+const questionsDb = new Low(new JSONFile(path.join(__dirname, 'db.json')), { questions: [] });
+const responsesDb = new Low(new JSONFile(path.join(__dirname, 'responses.json')), { responses: [] });
 
 // Initialize databases
-await questionsDb.read();
-await responsesDb.read();
-
-app.use(express.json());
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-
-app.get('/', async (req, res) => {
+try {
     await questionsDb.read();
-    res.render('survey', { questions: questionsDb.data.questions });
+    await responsesDb.read();
+} catch (error) {
+    console.error('Database initialization error:', error);
+    // Initialize with empty data if files don't exist
+    questionsDb.data = { questions: [] };
+    responsesDb.data = { responses: [] };
+}
+
+// Middleware
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Routes
+app.get('/', async (req, res) => {
+    try {
+        await questionsDb.read();
+        res.render('survey', { questions: questionsDb.data.questions });
+    } catch (error) {
+        console.error('Error reading questions:', error);
+        res.status(500).send('Error loading survey questions');
+    }
 });
 
 app.post('/submit-response', async (req, res) => {
-    await responsesDb.read();
-    
-    const response = {
-        generation: req.body.generation,
-        answers: req.body.answers,
-        timestamp: new Date()
-    };
-    
-    responsesDb.data.responses.push(response);
-    await responsesDb.write();
-    
-    const matches = calculateGenerationalMatches(req.body.answers, req.body.generation);
-    res.json({ matches });
+    try {
+        await responsesDb.read();
+        
+        const response = {
+            generation: req.body.generation,
+            answers: req.body.answers,
+            timestamp: new Date()
+        };
+        
+        responsesDb.data.responses.push(response);
+        await responsesDb.write();
+        
+        const matches = calculateGenerationalMatches(req.body.answers, req.body.generation);
+        res.json({ matches });
+    } catch (error) {
+        console.error('Error submitting response:', error);
+        res.status(500).send('Error saving response');
+    }
 });
 
 function calculateGenerationalMatches(userAnswers, userGeneration) {
@@ -84,6 +104,7 @@ function calculateGenerationalMatches(userAnswers, userGeneration) {
     return matches;
 }
 
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
