@@ -1,11 +1,12 @@
 {
   "name": "final-con-lab",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",  // Changed from index.js to server.js
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "start": "node server.js",  // Added start script for Glitch
+    "dev": "nodemon server.js", // Updated to match the main file
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "express": "^4.21.1",
     "hammerjs": "^2.0.8",
     "lowdb": "^7.0.1"
+  },
+  "engines": {
+    "node": "14.x"  // Specify Node.js version for Glitch
   }
 }
