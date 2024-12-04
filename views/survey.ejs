@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="survey-container">
+        <div id="card-stack">
+            <div class="card current">
+                <h2 id="question-text"></h2>
+                <div id="multiple-choice-container" style="display: none">
+                    <div class="generation-options"></div>
+                </div>
+                <div id="swipe-container" style="display: none">
+                    <div class="swipe-instructions">
+                        <p>← Swipe left to disagree</p>
+                        <p>Swipe right to agree →</p>
+                    </div>
+                    <textarea class="response-input" placeholder="Optional: Share your thoughts..."></textarea>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <script id="survey-data" type="application/json">
+        <%- JSON.stringify(questions) %>
+    </script>
+    <script>
+        // Make questions available to survey.js
+        const surveyQuestions = JSON.parse(document.getElementById('survey-data').textContent);
+    </script>
+    <script src="/js/hammer.min.js"></script>
+    <script src="/js/survey.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="/js/hearts.js"></script>
+</body>
+</html> 

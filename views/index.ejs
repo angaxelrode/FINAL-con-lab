@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey App</title>
+</head>
+<body>
+    <h1>Welcome to the Survey</h1>
+    <p>We'd like to learn more about you!</p>
+    
+    <!-- Add a button or link to start the survey -->
+    <button onclick="startSurvey()">Start Survey</button>
+
+    <!-- Hide the questions initially -->
+    <div id="survey-questions" style="display: none;">
+        <h2>What generation do you belong to or identify most closely with?</h2>
+        <!-- Your existing question content -->
+    </div>
+
+    <script>
+        function startSurvey() {
+            document.getElementById('survey-questions').style.display = 'block';
+        }
+    </script>
+</body>
+</html> 

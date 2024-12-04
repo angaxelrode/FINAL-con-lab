@@ -1,0 +1,88 @@
+{
+    "questions": [
+      {
+        "id": 0,
+        "text": "Welcome! This whole survey is anonymous except for the next question. It takes 2-15 minutes depending on you. Data will be used to inform the author's research practice.",
+        "type": "welcome",
+        "options": []
+      },
+      {
+        "id": 1,
+        "text": "What generation do you belong to or identify most closely with?",
+        "type": "generation-select",
+        "options": [
+          "The Silent Generation - born 1928-1945",
+          "Baby Boomers - born 1946-1964",
+          "Generation X - born 1965-1980",
+          "Millennials - born 1981-1996",
+          "Generation Z - born 1997-2012",
+          "Generation Alpha - born 2013-present"
+        ]
+      },
+      {  
+        "id": 2,
+        "text": "Do you think intimacy is reserved for romantic relationships?",
+        "type": "two-step"
+      },
+      {
+        "id": 3,
+        "text": "Do you think intimacy should be private?",
+        "type": "two-step"
+      },
+      {
+        "id": 4,
+        "text": "Do you have a firm understanding of consent?",
+        "type": "two-step"
+      },
+      {
+        "id": 5,
+        "text": "Do you practice consent with yourself?",
+        "type": "two-step"
+      },
+      {
+        "id": 6,
+        "text": "Do you think social media is beneficial for your intimate relationships? (Including friends, lovers, family, up to interpretation…)",
+        "type": "two-step"
+      },
+      {
+        "id": 7,
+        "text": "Do you think there is a difference between pleasure and arousal?",
+        "type": "two-step"
+      },
+      {
+        "id": 8,
+        "text": "Are you avoiding being vulnerable with someone right now?",
+        "type": "two-step"
+      },
+      {
+        "id": 9,
+        "text": "Does talking about sex make you feel uncomfortable at all?",
+        "type": "two-step"
+      },
+      {
+        "id": 10,
+        "text": "Do you think the economy affects your relationships?",
+        "type": "two-step"
+      },
+      {
+        "id": 11,
+        "text": "Do you think situationships are a good idea? (A situationship is a type of relationship that is not defined by traditional labels or commitments. It is often characterized by a casual or undefined connection between two people, and may involve a range of activities, from hanging out to dating.",
+        "type": "two-step"
+      },
+      {
+        "id": 12,
+        "text": "Do you think COVID impacted the way you are intimate with yourself and others?",
+        "type": "two-step"
+      },
+      {
+        "id": 13,
+        "text": "Do you think sex is spiritual?",
+        "type": "two-step"
+      },
+      {
+        "id": 14,
+        "text": "Do you like the idea of being with one committed partner for a really long time?",
+        "type": "two-step"
+      }
+    ]
+}
